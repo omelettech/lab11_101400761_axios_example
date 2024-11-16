@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 class PersonList extends Component {
@@ -13,7 +13,7 @@ class PersonList extends Component {
             .then(res => {
                 console.log(res.data);
                 const persons = res.data.results;
-                this.setState({ persons });
+                this.setState({persons});
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -21,17 +21,28 @@ class PersonList extends Component {
     }
 
     render() {
-        const { persons } = this.state;
+        const {persons} = this.state;
 
         return (
             <div>
                 <h1>Person List</h1>
                 <ul>
                     {persons.map(person => (
-                        <li key={person.login.uuid}>
-                            <img src={person.picture.thumbnail} alt={person.name.first} />
-                            <p>{person.name.first} {person.name.last}</p>
-                            <p>{person.email}</p>
+
+                        <li key={person.login.uuid} style={{listStyle:"none"}}>
+                            <div style={{
+                                width: "90%",
+                                height: "fit-content",
+                                padding: 20,
+                                backgroundColor: "#4B4376",
+                                margin: "10px"
+                            }}>
+
+                                <img src={person.picture.thumbnail} alt={person.name.first}/>
+                                <p>{person.name.first} {person.name.last}</p>
+                                <p>{person.email}</p>
+                            </div>
+
                         </li>
                     ))}
                 </ul>
